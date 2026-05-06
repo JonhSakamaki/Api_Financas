@@ -149,6 +149,7 @@ D:\Jonh Arquivos\Meus Projetos\Api Financas\obj\Debug\net9.0\Api Financas.Assemb
 D:\Jonh Arquivos\Meus Projetos\Api Financas\obj\Debug\net9.0\Api Financas.csproj.CoreCompileInputs.cache
 D:\Jonh Arquivos\Meus Projetos\Api Financas\obj\Debug\net9.0\Api Financas.MvcApplicationPartsAssemblyInfo.cs
 D:\Jonh Arquivos\Meus Projetos\Api Financas\obj\Debug\net9.0\Api Financas.MvcApplicationPartsAssemblyInfo.cache
+D:\Jonh Arquivos\Meus Projetos\Api Financas\obj\Debug\net9.0\Api Financas.sourcelink.json
 D:\Jonh Arquivos\Meus Projetos\Api Financas\obj\Debug\net9.0\rjimswa.dswa.cache.json
 D:\Jonh Arquivos\Meus Projetos\Api Financas\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
 D:\Jonh Arquivos\Meus Projetos\Api Financas\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
