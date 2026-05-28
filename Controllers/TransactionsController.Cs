@@ -57,4 +57,61 @@ public class TransactionsController : ControllerBase
 
     }
 
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutTransaction (int id, Transaction transaction)
+    {
+        if (id != transaction.Id)
+        {
+            return BadRequest("O ID informado na URL nao coincide com o ID do corpo da requisicao.");
+        }
+
+        var categoryExists = await _context.Categories.AnyAsync(c => c.Id == transaction.CategoryId);
+        if (!categoryExists)
+        {
+            return BadRequest("A categoria informada nao existe.");
+        }
+
+        _context.Entry(transaction).State = EntityState.Modified;
+
+        try
+        {
+            await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            if (!TransactionExists(id))
+            {
+                return NotFound("Transacao nao encontrada.");
+            }
+            else
+            {
+                throw;
+            }
+        }
+
+        return NoContent();
+
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteTransaction(int id)
+    {
+        var transaction = await _context.Transactions.FindAsync(id);
+        if (transaction == null)
+        {
+            return NotFound("Transacao nao encontrada");
+        }
+
+        _context.Transactions.Remove(transaction);
+        await _context.SaveChangesAsync();
+
+        return NoContent();
+
+    }
+
+    private bool TransactionExists(int id)
+    {
+        return _context.Transactions.Any(e => e.Id == id);
+    }
+
 }
