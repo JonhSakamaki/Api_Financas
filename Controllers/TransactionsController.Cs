@@ -38,4 +38,23 @@ public class TransactionsController : ControllerBase
 
         return CreatedAtAction(nameof(GetTransactions), new { id = transaction.Id }, transaction);
     }
+
+    [HttpGet("Resumo")]
+    public async Task<ActionResult<object>> GetResumo()
+    {
+        var totalReceitas = await _context.Transactions.Where(t => t.Type == TransactionType.Income).SumAsync(t => t.Amount);
+
+        var totalDespesas = await _context.Transactions.Where(t => t.Type == TransactionType.Expense).SumAsync(t => t.Amount);
+
+        var saldo = totalReceitas - totalDespesas;
+
+        return Ok(new
+        {
+            TotalReceitas = totalReceitas,
+            TotalDespesas = totalDespesas,
+            SaldoAtual = saldo
+        });
+
+    }
+
 }
