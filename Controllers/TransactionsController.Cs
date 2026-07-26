@@ -23,6 +23,19 @@ public class TransactionsController : ControllerBase
         .ToListAsync();
     }
 
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Transaction>> GetTransaction(int id)
+    {
+        var transaction = await _context.Transactions.Include(t => t.Category).FirstOrDefaultAsync(t => t.Id == id);
+
+    if (transaction == null)
+        {
+            return NotFound("Transação não encontrada.");
+        }
+
+        return transaction;
+    }
+
     [HttpPost]
     public async Task<ActionResult<Transaction>> PostTransaction(Transaction transaction)
     {
